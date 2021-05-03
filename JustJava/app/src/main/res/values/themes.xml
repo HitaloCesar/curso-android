@@ -13,4 +13,23 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- Secondary application theme. -->
+    <style name="Theme.JustJava2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#4285F4</item>
+        <item name="colorPrimaryVariant">#DB4437</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorSecondary">#0F9D58</item>
+        <item name="colorSecondaryVariant">#4285F4</item>
+        <item name="colorOnSecondary">#DB4437</item>
+
+        <item name="android:colorBackground">#DB4437</item>
+        <item name="android:navigationBarColor">#0F9D58</item>
+
+
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">#F4B400</item>
+        <!-- Customize your theme here. -->
+    </style>
+
 </resources>
