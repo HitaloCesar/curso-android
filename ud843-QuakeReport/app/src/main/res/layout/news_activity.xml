@@ -13,11 +13,18 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for a list of earthquakes -->
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@null"
-    android:dividerHeight="0dp" />
+    android:animateLayoutChanges="true"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <ListView
+        android:id="@+id/list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/textColorNews"
+        android:dividerHeight="2dp" />
+</RelativeLayout>

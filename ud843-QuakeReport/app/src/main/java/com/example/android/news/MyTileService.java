@@ -1,15 +1,13 @@
-package com.example.android.quakereport;
+package com.example.android.news;
 
 
-import android.arch.lifecycle.Lifecycle;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Icon;
-import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.example.android.news.NewsActivity;
 
 public class MyTileService extends TileService {
 
@@ -20,23 +18,22 @@ public class MyTileService extends TileService {
         super.onClick();
 
         Tile tile = getQsTile();
-        Intent intent = new Intent(this, EarthquakeActivity.class);
+        Intent intent = new Intent(this, NewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
 
         boolean isActive = (tile.getState() == Tile.STATE_ACTIVE);
         if (isActive) {
-            tile.setState(Tile.STATE_INACTIVE);
-            tile.setLabel("Earthquake News");
-            tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_media_play));
-
+            tile.setState(Tile.STATE_ACTIVE);
+            tile.setLabel("News");
+            tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_menu_agenda));
 
         }
         else {
             tile.setState(Tile.STATE_ACTIVE);
-            tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_media_pause));
-            tile.setLabel("Earthquake News");
+            tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_menu_agenda));
+            tile.setLabel("News");
 
         }
         tile.updateTile();
@@ -51,12 +48,12 @@ public class MyTileService extends TileService {
         tile.setState(Tile.STATE_ACTIVE);
 
 
-        tile.setLabel("Earthquake News");
+        tile.setLabel("News");
 
-        tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_media_play));
+        tile.setIcon(Icon.createWithResource(this, android.R.drawable.ic_menu_agenda));
         tile.updateTile();
 
-        Toast.makeText(getApplicationContext(), "Earthquake tile added", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "News tile added", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -71,10 +68,10 @@ public class MyTileService extends TileService {
         Tile tile = getQsTile();
 
         if (tile.getState() == Tile.STATE_ACTIVE) {
-            tile.setLabel("Earthquake News");
+            tile.setLabel("News");
         }
         else{
-            tile.setLabel("Earthquake News");
+            tile.setLabel("News");
         }
 
         tile.updateTile();

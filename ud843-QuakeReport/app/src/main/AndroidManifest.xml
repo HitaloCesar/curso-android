@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.quakereport">
+    package="com.example.android.news">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EarthquakeActivity">
+        <activity android:name=".NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,7 +35,7 @@
         <service
             android:name=".MyTileService"
             android:icon="@android:drawable/ic_media_play"
-            android:label="Earthquake News"
+            android:label="News"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
 
             <intent-filter>

@@ -1,6 +1,5 @@
-package com.example.android.quakereport;
+package com.example.android.news;
 
-import android.net.UrlQuerySanitizer;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -15,23 +14,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
 public final class QueryUtils {
-
+    private static final String ACCEPT_PROPERTY = "application/geo+json;version=1";
+    private static final String USER_AGENT_PROPERTY = "newsapi.org (hitalo.c.a@gmail.com)"; //your email id for that site
 
     private static final String LOG_TAG = "QueryUtils";
 
     private QueryUtils() {}
 
-    public static List<Earthquake> fetchEarthquakeData(String requestUrl) {
+    public static List<News> fetchEarthquakeData(String requestUrl) {
         URL url = createUrl(requestUrl);
 
         String jsonRes = null;
@@ -41,9 +38,9 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        List<Earthquake> earthquakes = extractEarthquakes(jsonRes);
+        List<News> news = extractEarthquakes(jsonRes);
 
-        return earthquakes;
+        return news;
     }
 
     private static URL createUrl(String stringUrl) {
@@ -73,6 +70,8 @@ public final class QueryUtils {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestProperty("Accept", ACCEPT_PROPERTY);  // added
+            urlConnection.setRequestProperty("User-Agent", USER_AGENT_PROPERTY); // added
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -118,21 +117,22 @@ public final class QueryUtils {
 
 
 
-    private static ArrayList<Earthquake> extractEarthquakes(String jsonResponse) {
-        ArrayList<Earthquake> earthquakes = new ArrayList<>();
+    private static ArrayList<News> extractEarthquakes(String jsonResponse) {
+        ArrayList<News> news = new ArrayList<>();
 
         try {
-            ArrayList<Earthquake> finalArray = new ArrayList<>();
+            ArrayList<News> finalArray = new ArrayList<>();
             JSONObject obj = new JSONObject(jsonResponse);
-            JSONArray arr = obj.getJSONArray("features");
+            JSONArray arr = obj.getJSONArray("articles");
             for(int i = 0; i < arr.length(); i++){
                 JSONObject currentObj = arr.getJSONObject(i);
-                JSONObject properties = currentObj.getJSONObject("properties");
-                double mag = properties.getDouble("mag");
-                String place = properties.getString("place");
-                long time = properties.getLong("time");
-                String url = properties.getString("url");
-                Earthquake objAux = new Earthquake(mag, place, time, url);
+                String title = currentObj.getString("title");
+                String description = currentObj.getString("description");
+                String url = currentObj.getString("url");
+                String urlImage = currentObj.getString("urlToImage");
+                String date = currentObj.getString("publishedAt");
+
+                News objAux = new News(title, description, date, url, urlImage);
                 finalArray.add(objAux);
             }
 
@@ -141,7 +141,7 @@ public final class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
-        return earthquakes;
+        return news;
     }
 
 }
