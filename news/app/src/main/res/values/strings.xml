@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">News</string>
+
+    <string-array name="spinner_array1">
+        <item>Alemanha(DE)</item>
+        <item>Brasil(BR)</item>
+        <item>Bulgária(BG)</item>
+        <item>Canadá(CA)</item>
+        <item>China(CN)</item>
+        <item>Egito(EG)</item>
+        <item>Estados Unidos(US)</item>
+        <item>França(FR)</item>
+        <item>Hong-Kong(HK)</item>
+        <item>India(IN)</item>
+        <item>Japão(JP)</item>
+        <item>Portugal(PT)</item>
+        <item>Russia(RU)</item>
+        <item>Servia(RS)</item>
+    </string-array>
+
+
+    <string-array name="spinner_array2">
+        <item>Ciência</item>
+        <item>Entretenimento</item>
+        <item>Esportes</item>
+        <item>Geral</item>
+        <item>Negócios</item>
+        <item>Saúde</item>
+        <item>Tecnologia</item>
+    </string-array>
+
+</resources>
